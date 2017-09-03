@@ -4,38 +4,38 @@
 
 TITLE Simon
 
-.386 
+.386
 .MODEL FLAT, STDCALL
-OPTION CASEMAP:none 
+OPTION CASEMAP:none
 
 ;-------LIBRARIES USED--------------------------------------------
 INCLUDELIB winmm.lib
-INCLUDELIB user32.lib 
-INCLUDELIB kernel32.lib 
-INCLUDELIB gdi32.lib  
+INCLUDELIB user32.lib
+INCLUDELIB kernel32.lib
+INCLUDELIB gdi32.lib
 INCLUDE macros.inc
 INCLUDE \masm32\INCLUDE\Irvine32_NOWIN.inc
-INCLUDE \masm32\INCLUDE\windows.inc 
-INCLUDE \masm32\INCLUDE\user32.inc 
-INCLUDE \masm32\INCLUDE\kernel32.inc 
- 
+INCLUDE \masm32\INCLUDE\windows.inc
+INCLUDE \masm32\INCLUDE\user32.inc
+INCLUDE \masm32\INCLUDE\kernel32.inc
+
 .data
 
 ;--------------SOUND VARIABLE FILES-----------------------------------
-BeepGreen1 BYTE "GreenBeep1.wav",0			;File location and variable for Green beep 1
-BeepGreen2 BYTE "GreenBeep2.wav",0			;File location and variable for Green beep 2
-BeepGreen3 BYTE "GreenBeep3.wav",0			;File location and variable for Green beep 3
-BeepRed1 BYTE "RedBeep1.wav",0				;File location and variable for Red beep 1
-BeepRed2 BYTE "RedBeep2.wav",0				;File location and variable for Red beep 2
-BeepRed3 BYTE "RedBeep3.wav",0				;File location and variable for Red beep 3
-BeepBlue1 BYTE "BlueBeep1.wav",0			;File location and variable for Blue beep 1
-BeepBlue2 BYTE "BlueBeep2.wav",0			;File location and variable for Blue beep 2
-BeepBlue3 BYTE "BlueBeep3.wav",0			;File location and variable for Blue beep 3
-BeepYellow1 BYTE "YellowBeep1.wav",0		;File location and variable for Yellow beep 1
-BeepYellow2 BYTE "YellowBeep2.wav",0		;File location and variable for Yellow beep 2
-BeepYellow3 BYTE "YellowBeep3.wav",0		;File location and variable for Yellow beep 3
-BeepGameOver BYTE "GameOverSound.wav",0		;File location and variable for Game Over beep
-BeepSplash BYTE "SpashScreen.wav",0			;File location and variable for Splash Screen beep
+greenBeep1 BYTE "green-beep-1.wav",0
+greenBeep2 BYTE "green-beep-2.wav",0
+greenBeep3 BYTE "green-beep-3.wav",0
+redBeep1 BYTE "red-beep-1.wav",0
+redBeep2 BYTE "red-beep-2.wav",0
+redBeep3 BYTE "red-beep-3.wav",0
+blueBeep1 BYTE "blue-beep-1.wav",0
+blueBeep2 BYTE "blue-beep-2.wav",0
+blueBeep3 BYTE "blue-beep-3.wav",0
+yellowBeep1 BYTE "yellow-beep-1.wav",0
+yellowBeep2 BYTE "yellow-beep-2.wav",0
+yellowBeep3 BYTE "yellow-beep-3.wav",0
+gameOverBeep BYTE "game-over.wav",0
+introScreenBeep BYTE "intro-screen.wav",0
 
 NULL equ 0
 SND_ASYNC equ 1h
@@ -254,7 +254,7 @@ main PROC
 			;receive the users input, executing which ever option	;
 			;they chose.											;
 			;--------------Start Of Game----------------------------;
-	
+
 	StartOfGame:
 		Call PrintStartScreen
 		Call StartScreenInput
@@ -312,7 +312,7 @@ GameIsOver PROC
 		call changeRed
 		call changeBlue
 		call printColoredBoard
-		invoke PlaySound, OFFSET BeepGameOver, NULL, SND_FILENAME
+		invoke PlaySound, OFFSET gameOverBeep, NULL, SND_FILENAME
 		pop ecx
 	loop FlashBoard
 	mov eax, 300
@@ -573,7 +573,7 @@ ValuesCheck ENDP
 			;pressed. Then it calls to highlight the color as well	;
 			;as output a sound with it.								;
 			;--------------ButtonPress------------------------------;
-ButtonPress PROC	
+ButtonPress PROC
 	mov eax, ButtonPressVal
 	cmp eax, AIPress
 	je AIButtonPress
@@ -614,13 +614,13 @@ ButtonPress PROC
 		jge OverFourteenG
 		cmp eax, 6
 		jge OverSixG
-		invoke PlaySound, OFFSET BeepGreen1, NULL, SND_FILENAME
+		invoke PlaySound, OFFSET greenBeep1, NULL, SND_FILENAME
 		jmp SoundPlayedG
 		OverSixG:
-		invoke PlaySound, OFFSET BeepGreen2, NULL, SND_FILENAME
+		invoke PlaySound, OFFSET greenBeep2, NULL, SND_FILENAME
 		jmp SoundPlayedG
 		OverFourteenG:
-		invoke PlaySound, OFFSET BeepGreen3, NULL, SND_FILENAME
+		invoke PlaySound, OFFSET greenBeep3, NULL, SND_FILENAME
 		SoundPlayedG:
 		call changeGreen
 		call printColoredBoard
@@ -633,13 +633,13 @@ ButtonPress PROC
 				jge OverFourteenY
 				cmp eax, 6
 				jge OverSixY
-				invoke PlaySound, OFFSET BeepYellow1, NULL, SND_FILENAME
+				invoke PlaySound, OFFSET yellowBeep1, NULL, SND_FILENAME
 				jmp SoundPlayedY
 				OverSixY:
-				invoke PlaySound, OFFSET BeepYellow2, NULL, SND_FILENAME
+				invoke PlaySound, OFFSET yellowBeep2, NULL, SND_FILENAME
 				jmp SoundPlayedY
 				OverFourteenY:
-				invoke PlaySound, OFFSET BeepYellow3, NULL, SND_FILENAME
+				invoke PlaySound, OFFSET yellowBeep3, NULL, SND_FILENAME
 				SoundPlayedY:
 				call changeYellow
 				call printColoredBoard
@@ -652,13 +652,13 @@ ButtonPress PROC
 						jge OverFourteenR
 						cmp eax, 6
 						jge OverSixR
-						invoke PlaySound, OFFSET BeepRed1, NULL, SND_FILENAME
+						invoke PlaySound, OFFSET redBeep1, NULL, SND_FILENAME
 						jmp SoundPlayedR
 						OverSixR:
-						invoke PlaySound, OFFSET BeepRed2, NULL, SND_FILENAME
+						invoke PlaySound, OFFSET redBeep2, NULL, SND_FILENAME
 						jmp SoundPlayedR
 						OverFourteenR:
-						invoke PlaySound, OFFSET BeepRed3, NULL, SND_FILENAME
+						invoke PlaySound, OFFSET redBeep3, NULL, SND_FILENAME
 						SoundPlayedR:
 						call changeRed
 						call printColoredBoard
@@ -671,13 +671,13 @@ ButtonPress PROC
 								jge OverFourteenB
 								cmp eax, 6
 								jge OverSixB
-								invoke PlaySound, OFFSET BeepBlue1, NULL, SND_FILENAME
+								invoke PlaySound, OFFSET blueBeep1, NULL, SND_FILENAME
 								jmp SoundPlayedB
 								OverSixB:
-								invoke PlaySound, OFFSET BeepBlue2, NULL, SND_FILENAME
+								invoke PlaySound, OFFSET blueBeep2, NULL, SND_FILENAME
 								jmp SoundPlayedB
 								OverFourteenB:
-								invoke PlaySound, OFFSET BeepBlue3, NULL, SND_FILENAME
+								invoke PlaySound, OFFSET blueBeep3, NULL, SND_FILENAME
 								SoundPlayedB:
 								call changeBlue
 								call printColoredBoard
@@ -995,7 +995,7 @@ PrintStartScreen PROC
 	mov sWTracker, 0
 	mov sHTracker, 0
 	call placeStartText
-	invoke PlaySound, OFFSET BeepSplash, NULL, SND_ASYNC
+	invoke PlaySound, OFFSET introScreenBeep, NULL, SND_ASYNC
 ret
 PrintStartScreen ENDP
 			;--------------sSelectCurrentColor----------------------;
