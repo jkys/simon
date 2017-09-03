@@ -45,10 +45,10 @@ ExitProcess PROTO STDCALL :DWORD
 
 
 ;--------------MOUSE CLICK VARIABLES AND STRINGS-------------- THANKS TO JAY RUSSO FOR ALL INFORMATION AND SNIPPETS/LIBRARIES FOR MOUSE CLICKS
-rHnd HANDLE ?				;Jays Code
-numEventsRead DWORD ?		;Jays Code
-numEventsOccurred DWORD ?	;Jays Code
-eventBuffer INPUT_RECORD 128 DUP(<>)	;Jays Code
+rHnd HANDLE ?
+numEventsRead DWORD ?
+numEventsOccurred DWORD ?
+eventBuffer INPUT_RECORD 128 DUP(<>)
 
 ;--------------MOUSE CLICK COORDINATE VARIABLES-------------------
 XCord DWORD ?				;Variable holder for X Coordinate
@@ -95,7 +95,7 @@ UserInputValue DWORD ?		;Variable which is passed either 1,2, or 3 and calls the
 helpStr1_1 db "WELCOME TO SIMON!",0
 helpStr2_1 db "A game that tests your wits, your Strength",0
 helpStr2_2 db "and most importantly your MEMORY!",0
-helpStr3_1 db "When you hit PLAY a circular board of awesomenss",0
+helpStr3_1 db "When you hit PLAY a circular board of awesomeness",0
 helpStr3_2 db "will show on your screen.",0
 helpStr4_1 db "Simon will light up one color. Remember it. Then tell Simon, by",0
 helpStr4_2 db "clicking on the color, what color was just lit.",0
@@ -109,9 +109,9 @@ helpStr7_1 db "Each round will progress the same way.",0
 ;--------------START SCREEN BOARD VARIABLES--------------
 sTotalSize = 884		;total size of board
 sW db 68				;total width of board
-sWTracker db 0			;to keep track of width posistion
+sWTracker db 0			;to keep track of width position
 sH db 13				;total height of board
-sHTracker db 0			;to keep track of heigh posistion
+sHTracker db 0			;to keep track of heigh position
 
 StartScreen	BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 			BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -230,7 +230,7 @@ UserInputs DWORD 50 DUP(0)	;User input array
 ;--------------VARIABLES GAME LOGIC AND TRACKING----------------------------
 Turn DWORD 0				;Used to hold the array location value for each run
 Again DWORD 1				;Used (never changed) to check against 'ReRun' to decided whether to run game logic again
-ReRun DWORD ?				;Used to aginst 'Again' to check wether to loop or not
+ReRun DWORD ?				;Used against 'Again' to check wether to loop or not
 Run DWORD 1					;Used to keep track of how many iterations the game has gone through
 Score DWORD -1				;Score tracker, starts at -1 but at first start of game it bumps up to 0 and then keeps track from there
 HighScore DWORD 0			;High Score Tracker, starts at 0 and stacks the user score if it is greater than current highest score
@@ -261,7 +261,7 @@ main PROC
 			;--------------Simon------------------------------------;
 			;Calls AI to receive it's input as well as color		;
 			;clicks, then calls the user which does the same, as	;
-			;well as checks the values aginst AI to make sure		;
+			;well as checks the values against AI to make sure		;
 			;they are correct. After it checks wether it was passed	;
 			;a wether it was correct or not and then either jumps	;
 			;to redo Simon (pass) or jumps to Fail (fail).			;
@@ -320,8 +320,8 @@ GameIsOver PROC
 	ret
 GameIsOver ENDP
 			;--------------ClearHouse-------------------------------;
-			;Restores all varaibles to how they would be when the	;
-			;program is first exectuted, as well as clearing all	;
+			;Restores all variables to how they would be when the	;
+			;program is first executed, as well as clearing all	;
 			;the arrays used.										;
 			;--------------ClearHouse-------------------------------;
 ClearHouse PROC
@@ -426,7 +426,7 @@ StartScreenInput PROC
 		ret
 StartScreenInput ENDP
 			;--------------ScorePrint-------------------------------;
-			;Outputs the score to the simon baord in the middle		;
+			;Outputs the score to the Simon board in the middle		;
 			;using gotoxy.											;
 			;--------------ScorePrint-------------------------------;
 ScorePrint PROC
@@ -480,7 +480,7 @@ AI ENDP
 			;--------------User-------------------------------------;
 			;User starts with a loop for however many variables the	;
 			;user will need to input. It calls UserMouseClick to	;
-			;check which buttont he user clicks and then highlights	;
+			;check which button the user clicks and then highlights	;
 			;it. It then checks the values from ValuesCheck and		;
 			;depending on the return of that is wether the loop		;
 			;loops again for next input, or skips the loop to jump	;
@@ -541,7 +541,7 @@ UserMouseClick PROC
 UserMouseClick ENDP
 			;--------------ValuesCheck------------------------------;
 			;Values check will take in AIInput array and the User	;
-			;Input arrya. it will then compare them and depending	;
+			;Input array. it will then compare them and depending	;
 			;whether it fails or not it will either exit with a		;
 			;fail escape variable or a pass variable to let the		;
 			;previous procedure which called it decide what to do	;
@@ -743,11 +743,11 @@ selectCurrentColor PROC uses ecx
 		call isGreen
 		ret
 selectCurrentColor ENDP
-			;--------------MoveToPosistion--------------------------;
+			;--------------MoveToPosition--------------------------;
 			;Will take in the height and width trackers of the		;
-			;board and then uses Gotoxy to move to the posistion	;
-			;and then increments it to get to the next posistion.	;
-			;--------------MoveToPosistion--------------------------;
+			;board and then uses Gotoxy to move to the position	;
+			;and then increments it to get to the next position.	;
+			;--------------MoveToPosition--------------------------;
 moveToPosition PROC uses eax
 	mov dh,	hTracker		;row
 	mov dl,	wTracker		;col
@@ -1031,10 +1031,10 @@ sSelectCurrentColor PROC uses ecx
 		call isGreen
 		ret
 sSelectCurrentColor ENDP
-			;--------------sMoveToPosistion-------------------------;
+			;--------------sMoveToPosition-------------------------;
 			;Use the trackers for the height and width of the start	;
 			;screen to output the screen.							;
-			;--------------sMoveToPosistion-------------------------;
+			;--------------sMoveToPosition-------------------------;
 sMoveToPosition PROC uses eax
 	mov dh,	sHTracker		;row
 	mov dl,	sWTracker		;col
@@ -1124,7 +1124,7 @@ DisplayHelp PROC
 	ret
 DisplayHelp ENDP
 			;--------------PlaceStartText---------------------------;
-			;Uses Gotoxy to set the cursor posistion and then		;
+			;Uses Gotoxy to set the cursor position and then		;
 			;outputs strings for the buttons such as 'Play', 'Help'	;
 			;or 'Exit'.												;
 			;--------------PlaceStartText---------------------------;
@@ -1149,7 +1149,7 @@ placeStartText PROC
 	ret
 placeStartText ENDP
 			;--------------GetButtonClick---------------------------;
-			;Used to receive one mouseclick from the user and		;
+			;Used to receive one mouse click from the user and		;
 			;stores the coordinates into two different variables.	;
 			;Mouse click work was done by Jay Russo and shared to	;
 			;the class. THANKS JAY!									;
