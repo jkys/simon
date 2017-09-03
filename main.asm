@@ -22,20 +22,20 @@ INCLUDE \masm32\INCLUDE\kernel32.inc
 .data
 
 ;--------------SOUND VARIABLE FILES-----------------------------------
-greenBeep1 BYTE "green-beep-1.wav",0
-greenBeep2 BYTE "green-beep-2.wav",0
-greenBeep3 BYTE "green-beep-3.wav",0
-redBeep1 BYTE "red-beep-1.wav",0
-redBeep2 BYTE "red-beep-2.wav",0
-redBeep3 BYTE "red-beep-3.wav",0
-blueBeep1 BYTE "blue-beep-1.wav",0
-blueBeep2 BYTE "blue-beep-2.wav",0
-blueBeep3 BYTE "blue-beep-3.wav",0
-yellowBeep1 BYTE "yellow-beep-1.wav",0
-yellowBeep2 BYTE "yellow-beep-2.wav",0
-yellowBeep3 BYTE "yellow-beep-3.wav",0
-gameOverBeep BYTE "game-over.wav",0
-introScreenBeep BYTE "intro-screen.wav",0
+greenBeep1 BYTE "music\color-sounds\green-beep-1.wav",0
+greenBeep2 BYTE "music\color-sounds\green-beep-2.wav",0
+greenBeep3 BYTE "music\color-sounds\green-beep-3.wav",0
+redBeep1 BYTE "music\color-sounds\red-beep-1.wav",0
+redBeep2 BYTE "music\color-sounds\red-beep-2.wav",0
+redBeep3 BYTE "music\color-sounds\red-beep-3.wav",0
+blueBeep1 BYTE "music\color-sounds\blue-beep-1.wav",0
+blueBeep2 BYTE "music\color-sounds\blue-beep-2.wav",0
+blueBeep3 BYTE "music\color-sounds\blue-beep-3.wav",0
+yellowBeep1 BYTE "music\color-sounds\yellow-beep-1.wav",0
+yellowBeep2 BYTE "music\color-sounds\yellow-beep-2.wav",0
+yellowBeep3 BYTE "music\color-sounds\yellow-beep-3.wav",0
+gameOverBeep BYTE "music\other\game-over.wav",0
+introScreenBeep BYTE "music\other\intro-screen.wav",0
 
 NULL equ 0
 SND_ASYNC equ 1h
